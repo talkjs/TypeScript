@@ -3302,6 +3302,10 @@
         "category": "Message",
         "code": 6185
     },
+    "Only emit declarations for code that has a '@published' annotation.": {
+        "category": "Message",
+        "code": 6186
+    },
     "Variable '{0}' implicitly has an '{1}' type.": {
         "category": "Error",
         "code": 7005
