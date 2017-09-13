@@ -417,6 +417,10 @@ var x = 0;`, {
             options: { compilerOptions: { stripInternal: true }, fileName: "input.js", reportDiagnostics: true }
         });
 
+        transpilesCorrectly("Supports setting 'onlyPublished'", "x;", {
+            options: { compilerOptions: { onlyPublished: false }, fileName: "input.js", reportDiagnostics: true }
+        });
+
         transpilesCorrectly("Supports setting 'suppressExcessPropertyErrors'", "x;", {
             options: { compilerOptions: { suppressExcessPropertyErrors: true }, fileName: "input.js", reportDiagnostics: true }
         });

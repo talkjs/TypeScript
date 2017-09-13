@@ -546,6 +546,12 @@ namespace ts {
             description: Diagnostics.Do_not_emit_declarations_for_code_that_has_an_internal_annotation,
         },
         {
+            name: "onlyPublished",
+            type: "boolean",
+            category: Diagnostics.Advanced_Options,
+            description: Diagnostics.Only_emit_declarations_for_code_that_has_a_published_annotation,
+        },
+        {
             name: "disableSizeLimit",
             type: "boolean",
             category: Diagnostics.Advanced_Options,

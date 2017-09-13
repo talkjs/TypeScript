@@ -276,6 +276,7 @@ var builtLocalCompiler = path.join(builtLocalDirectory, compilerFilename);
     * @param {boolean} opts.preserveConstEnums: true if compiler should keep const enums in code
     * @param {boolean} opts.noResolve: true if compiler should not include non-rooted files in compilation
     * @param {boolean} opts.stripInternal: true if compiler should remove declarations marked as @internal
+    * @param {boolean} opts.onlyPublished: true if compiler should remove declarations not marked as @published
     * @param {boolean} opts.inlineSourceMap: true if compiler should inline sourceMap
     * @param {Array} opts.types: array of types to include in compilation
     * @param callback: a function to execute after the compilation process ends
@@ -336,6 +337,10 @@ function compileFile(outFile, sources, prereqs, prefixes, useBuiltCompiler, opts
 
         if (opts.stripInternal) {
             options += " --stripInternal";
+        }
+
+        if (opts.onlyPublished) {
+            options += " --onlyPublished";
         }
         options += " --target es5";
         if (opts.lib) {
@@ -548,7 +553,8 @@ compileFile(servicesFile, servicesSources, [builtLocalDirectory, copyright].conc
         preserveConstEnums: true,
         keepComments: true,
         noResolve: false,
-        stripInternal: true
+        stripInternal: true,
+        onlyPublished: false
     },
             /*callback*/ function () {
         jake.cpR(servicesFile, nodePackageFile, { silent: true });
