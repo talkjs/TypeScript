@@ -66,7 +66,7 @@ namespace ts {
         let reportedDeclarationError = false;
         let errorNameNode: DeclarationName;
         const emitJsDocComments = compilerOptions.removeComments ? noop : writeJsDocComments;
-        const emit = compilerOptions.stripInternal ? stripInternal : emitNode;
+        const emit = (compilerOptions.stripInternal || compilerOptions.onlyPublished) ? strip : emitNode;
         let needsDeclare = true;
 
         let moduleElementDeclarationEmitInfo: ModuleElementDeclarationEmitInfo[] = [];
@@ -175,10 +175,21 @@ namespace ts {
             return comment.indexOf("@internal") >= 0;
         }
 
-        function stripInternal(node: Node) {
+
+        function onlyPublishedAnnotation(range: CommentRange) {
+            const comment = currentText.substring(range.pos, range.end);
+            return comment.indexOf("@published") < 1;
+        }
+
+        function strip(node: Node) {
             if (node) {
                 const leadingCommentRanges = getLeadingCommentRanges(currentText, node.pos);
-                if (forEach(leadingCommentRanges, hasInternalAnnotation)) {
+
+                if (compilerOptions.stripInternal && forEach(leadingCommentRanges, hasInternalAnnotation)) {
+                    return;
+                }
+
+                if (compilerOptions.onlyPublished && forEach(leadingCommentRanges, onlyPublishedAnnotation)) {
                     return;
                 }
 
