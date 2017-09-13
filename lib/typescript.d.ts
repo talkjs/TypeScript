@@ -2224,6 +2224,7 @@ declare namespace ts {
         sourceRoot?: string;
         strict?: boolean;
         strictNullChecks?: boolean;
+        onlyPublished?: boolean;
         suppressExcessPropertyErrors?: boolean;
         suppressImplicitAnyIndexErrors?: boolean;
         target?: ScriptTarget;
