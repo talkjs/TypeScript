@@ -189,8 +189,16 @@ namespace ts {
                     return;
                 }
 
-                if (compilerOptions.onlyPublished && forEach(leadingCommentRanges, onlyPublishedAnnotation)) {
-                    return;
+                if (compilerOptions.onlyPublished) {
+
+                    if (forEach(leadingCommentRanges, onlyPublishedAnnotation)) {
+                        return;
+                    }
+
+                    if (!node.jsDoc && node.kind >= ts.SyntaxKind.PropertySignature && node.kind <= ts.SyntaxKind.IndexSignature) {
+                        return;
+                    }
+
                 }
 
                 emitNode(node);
