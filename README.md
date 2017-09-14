@@ -2,7 +2,10 @@
 [![npm version](https://badge.fury.io/js/typescript.svg)](https://www.npmjs.com/package/typescript)
 [![Downloads](https://img.shields.io/npm/dm/typescript.svg)](https://www.npmjs.com/package/typescript)
 
-# TypeScript
+# @talkjs/typescript
+
+This fork of TypeScript adds `onlyPublished` option to the compiler which allows emitting only the declarations with `/** @published **/` annotation. It's similar to `--stripInternal` but works in reverse (whitelisting vs blacklisting). As with any option, you can add `"onlyPublished": true"` to your `tsconfig.json` or use it with `tsc` by adding the `--onlyPublished` flag.
+
 
 [![Join the chat at https://gitter.im/Microsoft/TypeScript](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Microsoft/TypeScript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -13,13 +16,7 @@
 For the latest stable version:
 
 ```
-npm install -g typescript
-```
-
-For our nightly builds:
-
-```
-npm install -g typescript@next
+npm install -g @talkjs/typescript
 ```
 
 ## Contribute

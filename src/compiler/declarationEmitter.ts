@@ -178,7 +178,7 @@ namespace ts {
 
         function onlyPublishedAnnotation(range: CommentRange) {
             const comment = currentText.substring(range.pos, range.end);
-            return comment.indexOf("@published") < 1;
+            return !(comment.indexOf("@published") > 0);
         }
 
         function strip(node: Node) {
